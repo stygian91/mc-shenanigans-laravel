@@ -1,21 +1,31 @@
 ## Installation
 
 1. Checkout the repo:
-`git clone git@github.com:stygian91/mc-shenanigans-laravel.git`
+```
+git clone git@github.com:stygian91/mc-shenanigans-laravel.git
+```
 
-2. Install php dependencies. You need to install composer - the package manager, if you don't already have it.
-`composer install`
+2. Install php dependencies. You need to install composer - the package manager, if you don't already have it before you run this command:
+```
+composer install
+```
 
 2. Copy the `.env.example` file
-`cp .env.example .env`
+```
+cp .env.example .env
+```
 
 3. Edit the `.env` file. Most likely you'll only need to update your database settings.
 
 4. Generate the application key:
-`php artisan key:generate`
+```
+php artisan key:generate
+```
 
 5. Run the database migrations:
-`php artisan migrate`
+```
+php artisan migrate
+```
 
 6. Make sure that all requests redirect to `public/index.php` (https://laravel.com/docs/5.8/installation#web-server-configuration)
 
