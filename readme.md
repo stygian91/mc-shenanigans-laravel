@@ -3,7 +3,7 @@
 1. Checkout the repo:
 `git clone git@github.com:stygian91/mc-shenanigans-laravel.git`
 
-2. Install php dependencies. You need to install the package manager composer, if you don't already have it.
+2. Install php dependencies. You need to install composer - the package manager, if you don't already have it.
 `composer install`
 
 2. Copy the `.env.example` file
