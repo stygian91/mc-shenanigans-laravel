@@ -29,6 +29,7 @@ class LocationController extends Controller
             'z-min' => 'numeric|nullable',
             'z-max' => 'numeric|nullable',
             'search-term' => 'string|nullable',
+            'filter-type' => 'string|nullable|in:all,overworld,nether,end',
         ];
         $request->validate($rules);
 
@@ -40,9 +41,22 @@ class LocationController extends Controller
             $locations_query->where('name', 'like', '%' . $term . '%');
         }
 
+        $filter_type = $request->input('filter-type');
+        if ($filter_type && strtolower($filter_type) !== 'all') {
+            $locations_query->where('type', '=', $filter_type);
+        }
+
         $locations = $locations_query->paginate(10);
         return view('locations.index', [
             'locations' => $locations,
+            'term' => $term,
+            'x_min' => $request->input('x-min'),
+            'x_max' => $request->input('x-max'),
+            'y_min' => $request->input('y-min'),
+            'y_max' => $request->input('y-max'),
+            'z_min' => $request->input('z-min'),
+            'z_max' => $request->input('z-max'),
+            'filter_type' => $filter_type,
         ]);
     }
 

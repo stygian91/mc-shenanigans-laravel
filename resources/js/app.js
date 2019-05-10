@@ -52,7 +52,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const $coordinateInputs = document.querySelectorAll('.form-search-position input[type=text]');
+  const $coordinateInputs = document.querySelectorAll('.form-search input[type=text]');
   for (const $input of $coordinateInputs) {
     $input.addEventListener('keydown', event => {
       const $form = $input.closest('form');
