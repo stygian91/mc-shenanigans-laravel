@@ -60,6 +60,11 @@ window.addEventListener('DOMContentLoaded', () => {
   const $deleteButtons = document.querySelectorAll('.btn-delete');
   for (const $button of $deleteButtons) {
     $button.addEventListener('click', event => {
+      const sure = window.confirm('Are you sure you want to delete this location?');
+      if (!sure) {
+        return;
+      }
+
       const $tr = $button.closest('tr');
       const url = $tr.getAttribute('data-url');
 
