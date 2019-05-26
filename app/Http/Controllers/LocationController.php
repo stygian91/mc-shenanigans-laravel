@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Builder;
 
 class LocationController extends Controller
 {
+    const POSTS_PER_PAGE = 20;
+
     public function __construct()
     {
         // TODO:
@@ -46,7 +48,7 @@ class LocationController extends Controller
             $locations_query->where('type', '=', $filter_type);
         }
 
-        $locations = $locations_query->paginate(10);
+        $locations = $locations_query->paginate(static::POSTS_PER_PAGE);
         return view('locations.index', [
             'locations' => $locations,
             'term' => $term,
@@ -98,14 +100,14 @@ class LocationController extends Controller
         $location->fill($request->all());
         $location->save();
 
-        return redirect(route('locations.index'));
+        return response(['success' => true]);
     }
 
     public function delete(Request $request, Location $location)
     {
         $location->delete();
 
-        return redirect(route('locations.index'));
+        return response(['success' => true]);
     }
 
     public function search(Request $request)
@@ -116,7 +118,7 @@ class LocationController extends Controller
 
         $term = $request->input('search-term');
         $locations = Location::where('name', 'like', '%' . $term . '%')
-            ->paginate(10);
+            ->paginate(static::POSTS_PER_PAGE);
         return view('locations.index', ['locations' => $locations]);
     }
 

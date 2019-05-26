@@ -74,9 +74,27 @@
       </form>
 
       @if (!empty($locations) && count($locations))
-        @foreach ($locations as $location)
-          @include('locations.show')
-        @endforeach
+        <div class="card mt-5">
+          <div class="card-body">
+            <table class="table table-bordered table-hover">
+              <thead>
+                <th scope="col">Name</th>
+                <th scope="col">Type</th>
+                <th scope="col" class="col-coord">X:</th>
+                <th scope="col" class="col-coord">Y:</th>
+                <th scope="col" class="col-coord">Z:</th>
+                <th scope="col">Actions:</th>
+              </thead>
+
+              <tbody>
+                @foreach ($locations as $location)
+                  @include('locations.show')
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+
       @else
         <div class="card">
           <div class="card-body">

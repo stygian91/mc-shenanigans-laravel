@@ -32,23 +32,50 @@ window.Vue = require('vue');
 //     el: '#app'
 // });
 
+const updateLocation = $tr => {
+  const url = $tr.getAttribute('data-url');
+
+  const x = $tr.querySelector('input[name=x]').value;
+  const y = $tr.querySelector('input[name=y]').value;
+  const z = $tr.querySelector('input[name=z]').value;
+  const name = $tr.querySelector('input[name=name]').value;
+  const $select = $tr.querySelector('select');
+  const type = $select.options[$select.selectedIndex].value;
+
+  axios.post(url, {
+    _method: 'PATCH',
+    x,
+    y,
+    z,
+    name,
+    type,
+  }).then(response => {
+    alert('Location updated successfully.')
+  }).catch(error => {
+    alert('There was an error while updating the entry.');
+  });
+};
 
 window.addEventListener('DOMContentLoaded', () => {
   const $deleteButtons = document.querySelectorAll('.btn-delete');
   for (const $button of $deleteButtons) {
     $button.addEventListener('click', event => {
-      const sure = window.confirm('Are you sure?');
-      if (!sure) {
-        return;
-      }
+      const $tr = $button.closest('tr');
+      const url = $tr.getAttribute('data-url');
 
-      const $form = $button
-        .closest('.card')
-        .querySelector('.form-delete');
+      axios.post(url, { _method: 'DELETE' }).then(response => {
+        $tr.remove();
+      }).catch(error => {
+        alert('There was an error while deleting the entry.');
+      });
+    });
+  }
 
-      if ($form) {
-        $form.submit();
-      }
+  const $updateButtons = document.querySelectorAll('.btn-update');
+  for (const $button of $updateButtons) {
+    $button.addEventListener('click', event => {
+      const $tr = $button.closest('tr');
+      updateLocation($tr);
     });
   }
 
@@ -66,4 +93,3 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
-
