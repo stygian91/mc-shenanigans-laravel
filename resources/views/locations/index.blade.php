@@ -80,10 +80,10 @@
               <thead>
                 <th scope="col">Name</th>
                 <th scope="col">Type</th>
-                <th scope="col" class="col-coord">X:</th>
-                <th scope="col" class="col-coord">Y:</th>
-                <th scope="col" class="col-coord">Z:</th>
-                <th scope="col">Actions:</th>
+                <th scope="col" class="col-coord">X</th>
+                <th scope="col" class="col-coord">Y</th>
+                <th scope="col" class="col-coord">Z</th>
+                <th scope="col">Actions</th>
               </thead>
 
               <tbody>
