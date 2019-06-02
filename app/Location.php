@@ -12,5 +12,11 @@ class Location extends Model
         'x',
         'y',
         'z',
+        'world_id',
     ];
+
+    public function world()
+    {
+        return $this->belongsTo(\App\World::class);
+    }
 }
